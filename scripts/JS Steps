@@ -1,0 +1,77 @@
+//******** Project #1 Space Invaders *******
+
+
+done -- //* start with player
+
+done -- //* then create aliens
+//* then move the aliens 
+//* now  can shoot
+
+
+//* shoot en son gelsin to both alien and starship
+
+//* put all in borders
+//* laser aliens and shooter
+
+
+//?Building the Components
+
+done -- // Build a grid-warpper made of 12x12 each-grids
+done -- // Get the array no of the each-grid to show on the grid-wrapper
+done -- // Create 4 rows 7 columns of Borgs
+done -- // Create the Starship
+// Create the laser element
+
+// Create 4 barriers
+// Create the bonus point Borg Queen
+
+
+//? Variables
+
+done -- // grid (width & height)
+done -- // divs
+done -- // Borgs
+done -- // Starship
+// laser
+
+
+//? Coding
+
+// Game starts upon clicking the start button
+
+// The Borgs move in group left to right all together, one cell per 0.86 seconds(like the heart beat)
+// Once they reach the right edge they all move one row down
+// Once they move one row down, they start moving right to left
+// Once they reach  the left edge they move one row down 
+// They repeat this function until they reach the row of the shooter
+
+// Starship moves on the same row left to right and right to left
+// Starship is controlled by the player with the arrow keys
+// Upon clicking a certain key (maybe x), the Starship shoots laser 
+
+// Laser travels on the same column it is initiated
+// Once the laser hits a Borg, the Borg disappears (upon touching the laser it becomes invisible? Or the class gets removed)
+// Every time the laser hits a Borg, the Starship gets 1000 points.
+
+// Game ends in two ways. 
+// Starship hits all Borgs and Wins
+// Or
+// Borgs reach the Starship row and Game Over
+
+// In both cases there is a reset button to restart the same
+
+
+// remove the alien class when shot. display none
+// aliens shoots randomly
+// 21 den ates et
+// eger altinda alien yoksa ates edebilir
+
+// son alien index 26-30 index
+// en buyuk 5 index can shoot with filter and random shooting
+
+
+
+
+
+
+
