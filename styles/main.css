@@ -75,5 +75,22 @@ h2 {
 }
 
 .starshipLaser {
-  background-color: blue;
+  background-image: url(https://i.imgur.com/8CJ2Keu.png?2);
+  background-size: contain;
+}
+
+.borgLaser {
+  background-image: url(https://i.imgur.com/MRiyeVV.jpg?1);
+  background-size: contain;
+}
+
+.game-ends-borgs-win {
+font-size: 40px;
+color: green;
+
+}
+
+.game-ends-starship-wins {
+font-size: 45px;
+color: blue;
 }
