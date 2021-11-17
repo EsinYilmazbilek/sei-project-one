@@ -85,7 +85,7 @@ createBorg()
 cells[starShipIndex].classList.add('starship')
 
 
-//* Moving the Borg - game starts upon clicking the start button *//
+//* Moving the Borg - they start upon clicking the start button *//
 
 const startButton = document.querySelector('.start')
 
@@ -187,6 +187,8 @@ document.addEventListener('keyup', handleControlKeys)
 
 //* Scoreboard Update *//
 
+//? 1000 points are added to the scoreboard everytime the starship hits a borg
+
 let scoreDisplay = 0
 function updateScore(){
   const scoreId = document.querySelector('#scoreId')
@@ -195,13 +197,19 @@ function updateScore(){
   scoreId.innerText = scoreDisplay
 }
 
-//* Startship Laser *//
 
-//? Laser gets shot
-//? Laser moves up
-//? Laser hits alien (the same cell contains both 'starshipLaser' and 'borgs' classes)
-//? Both 'starshipLaser' and 'borgs' classes get removed from the cell
-//? 1000 points are added to the scoreboard
+//* Borders *//
+
+//? creaating top and bottom borders 
+//? if starship laser arrives on the top row it disappears
+//? if borg laser arrives on the last row it dissappears
+
+// const bottomBorder = cells[0,1,2,3,4,5,6,7,8,9,10,11]
+// const topBorder = cells[132,133,134,135,136,137,138,139,140,141,142,143]
+
+
+
+//* Startship Laser *//
 
 function handleStarshipLaser() {
   let starshipLaserIndex = starShipIndex
@@ -218,16 +226,123 @@ function handleStarshipLaser() {
       borgIndex.isAlive = false
       cells[starshipLaserIndex].classList.remove('borgs')
       updateScore()
+    } else if (starshipLaserIndex < width) {
+        clearInterval(laserInterval)
+        cells[starshipLaserIndex].classList.remove('starshipLaser')
       }
   }, 200)
   }
-
 
   // document.addEventListener('keyup', handleStarshipLaser)
 
 
 
 //* Borgs Laser *//
+
+//? all borgs have the ability to shoot
+//? borgs can only shoot when the cell in front of them doesn't contain a borg
+//? the shooting is randomised and it happens in every 1 second
+
+// function addBorgsLaser() {
+//   cells[borgsLaserIndex].classList.add('borgLaser')
+// }
+
+// function removeBorgsLaser() {
+//   cells[borgsLaserIndex].classList.remove('borgLaser')
+// }
+
+// let isBorgFree = false
+
+// function handleBorgAvailability(indexToCheck) {
+//   if (!cells[indexToCheck + width].classList.contains('borgs')) {
+//     console.log('borg is free', indexToCheck, indexToCheck)
+//     isBorgFree = true
+//   } else {
+    
+//     isBorgFree = false
+//   }
+// }
+
+// function handleBorgsLaser() {
+  
+  // let currentIndexToCheck = borgs[Math.floor(Math.random() * borgs.length)].index
+
+// }
+
+
+// function handleBorgLaser() {
+
+//   let borgIndex.isAlive = false
+
+//   const currentIndexToCheck = borgs[Math.floor(Math.random() * borgs.length)].index
+//   const borgToShoot = borgs.find(borg => {
+//     return borg.index === currentIndexToCheck
+//   })
+//   let borgLaserIndex = borgToShoot.index + width
+
+//   const borgLaserInterval = window.setInterval(() => {
+//     cells[borgLaserIndex].classList.remove('borgLaser')
+//     borgLaserIndex += width
+//     cells[borgLaserIndex].classList.add('borgLaser')
+
+//   if (cells[borgLaserIndex].classList.contains('starShip')) {
+//     cells[borgLaserIndex].classList.remove('starShip')
+//       clearInterval(borgLaserInterval)
+//       // const borgIndex = borgs.find(borg => {
+//       //   return borg.index === starshipLaserIndex
+//       // })
+//       // borgIndex.isAlive = false
+//       cells[borgLaserIndex].classList.remove('borgs')
+//       updateScore()
+//       } else if (borgLaserIndex > 131) {
+//         clearInterval(borgLaserInterval)
+//         cells[borgLaserIndex].classList.remove('borgLaser')
+//       }
+//   }, 800)
+//   }
+
+
+// window.setInterval(handleBorgsLaser, 3000)
+
+// handleBorgAvailability(currentIndexToCheck) 
+
+  // while(!isBorgFree) {
+  //   console.log('not free')
+  //   currentIndexToCheck = borgs[Math.floor(Math.random() * borgs.length)].index
+  //   handleBorgAvailability(currentIndexToCheck)
+  // }
+
+  // if (isBorgFree) {
+  //   console.log('free', currentIndexToCheck)
+  //     const borgShootInterval = window.setInterval(() => {
+  //     cells[borgsLaserIndex].classList.remove('borgLaser')
+  //     borgsLaserIndex += width
+  //     cells[borgsLaserIndex].classList.add('borgLaser')
+  //     if (cells[borgsLaserIndex].classList.contains('starshipLaser')) {
+  //     cells[borgsLaserIndex].classList.remove('starshipLaser')
+  //     clearInterval(borgShootInterval)
+  //     }
+  //   }, 2000)
+  //   }
+
+
+
+
+//* Borg Explosion *//
+
+// function addBorgsExplosion() {
+//   cells[borgsLaserIndex].classList.add('borgExplosion')
+// }
+
+// function removeBorgsExplosion() {
+//   cells[borgsLaserIndex].classList.remove('borgExplosion')
+// }
+
+
+// const rightBorder = borgs[borgs.length - 1].index % width === width - 1
+// cells[borg.index].classList.add('borgs')
+
+
 
 // const laserAudioBorg = document.createElement('audioBorg')
 // laserAudioBorg.src = './/development/projects/project-1/assets'
