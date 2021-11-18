@@ -3,9 +3,10 @@
 }
 
 body {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  /* display: grid; */
+  /* grid-auto-flow: column;
+  grid-auto-columns: 1fr; */
+  display: inline-flex;
   align-items: center;
   background-image: url(https://i.imgur.com/diMdwX2.png);
   background-size: cover;
@@ -13,7 +14,7 @@ body {
   margin: 0;
 }
 
-.columnOne {
+/* .columnOne {
   width: 15%;
 }
 
@@ -23,7 +24,7 @@ body {
 
 .columnThree {
   width: 5%;
-}
+} */
 
 h1 {
   font-size: 30px;
