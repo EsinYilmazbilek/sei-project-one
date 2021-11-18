@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 
-//* Grid Variables *//
+//* Grids *//
 
 const grid = document.querySelector('.grid')
 const cells = []
@@ -8,8 +8,7 @@ const width = 12
 const gridCellCount =  width * width
 
 
-
-//* Borg Variables *//
+//* Borg *//
 
 let borgs = [
   { index: 13, isAlive: true },
@@ -42,12 +41,15 @@ let borgs = [
   { index: 55, isAlive: true } 
 ]
 
-//* Starship Variables *//
+//* Starship *//
 
 let starShipIndex = 120
-// let starshipLaserIndex = starShipIndex - width
+// { index: 120, isAlive: true }
 
-//* Building the Grids *//
+// function createStarShip() {
+// }
+
+//* Grid *//
 
 function createGrid() {
   for (let i = 0; i < gridCellCount; i++) {
@@ -59,18 +61,7 @@ function createGrid() {
 }
 createGrid()
 
-const border = [0,12,24,36,48,60,72,84,96,108,120,132,
-11,23,35,47,59,71,83,95,107,119,131,143]
-
-function createBorder(){
-  border.forEach((index) => {
-    cells[index].classList.add('border')
-    return
-  })
-}
-createBorder()
-
-//* Building the Borg *//
+//* Borgs *//
 
 function createBorg(){
   borgs.forEach((borg) => {
@@ -79,13 +70,35 @@ function createBorg(){
 }
 createBorg()
 
-
-//* Building the StarShip *//
+//* Starship *//
 
 cells[starShipIndex].classList.add('starship')
 
+//* Audios *//
+
+// function handleGameStartAudio() {
+//   audio src = ''
+//   audio.play()
+// }
+
+// function handleStarshipLaserAudio() {
+//   audio src = ''
+//   audio.play()
+// }
+
+// function borgsLaserShootAudio() {
+//   audio src = ''
+//   audio.play()
+// }
+
+// function starshipGetsHitAudio() {
+//   audio src = ''
+//   audio.play()
+// }
+
 
 //* Moving the Borg - they start upon clicking the start button *//
+
 
 const startButton = document.querySelector('.start')
 
@@ -106,7 +119,20 @@ function addBorg(){
 let direction = 1
 
 function handleGameStart() {
-  window.setInterval(() => {    
+  // handleGameStartAudio()
+
+  setTimeout(borgsLaserShoot, 1500)
+    const borgsMoving = window.setInterval(() => {   
+      const aliveBorgs = borgs.filter(borg => {
+        return borg.isAlive === true
+      })
+      aliveBorgs.map(borg => {
+      if (borg.index > 119) {
+        cells[borg.index].classList.remove('borgs')
+        clearInterval(borgsMoving)
+        handleEndGameLose()
+      }
+    }) 
     const rightBorder = borgs[borgs.length - 1].index % width === width - 1
     const leftBorder = borgs[0].index % width === 0
 
@@ -130,13 +156,11 @@ function handleGameStart() {
         return borg
       })
     }
-
     addBorg()
-  }, 860)
+  }, 200)
 
 }
 startButton.addEventListener('click', handleGameStart)
-
 
 
 //* Moving the StarShip *//
@@ -148,14 +172,6 @@ function removeStarship(){
 function addStarship(){
     cells[starShipIndex].classList.add('starship')
 }
-
-// function removeStarshipLaser(){
-//   cells[starshipLaserIndex].classList.remove('starshipLaser')
-// }
-
-// function addStarshipLaser(){
-//   cells[starshipLaserIndex].classList.add('starshipLaser')
-// }
 
 //* Handle Control Keys *//
 
@@ -187,8 +203,6 @@ document.addEventListener('keyup', handleControlKeys)
 
 //* Scoreboard Update *//
 
-//? 1000 points are added to the scoreboard everytime the starship hits a borg
-
 let scoreDisplay = 0
 function updateScore(){
   const scoreId = document.querySelector('#scoreId')
@@ -197,21 +211,10 @@ function updateScore(){
   scoreId.innerText = scoreDisplay
 }
 
-
-//* Borders *//
-
-//? creaating top and bottom borders 
-//? if starship laser arrives on the top row it disappears
-//? if borg laser arrives on the last row it dissappears
-
-// const bottomBorder = cells[0,1,2,3,4,5,6,7,8,9,10,11]
-// const topBorder = cells[132,133,134,135,136,137,138,139,140,141,142,143]
-
-
-
 //* Startship Laser *//
 
 function handleStarshipLaser() {
+  // handleStarshipLaserAudio()
   let starshipLaserIndex = starShipIndex
   const laserInterval = window.setInterval(() => {
     cells[starshipLaserIndex].classList.remove('starshipLaser')
@@ -229,104 +232,47 @@ function handleStarshipLaser() {
     } else if (starshipLaserIndex < width) {
         clearInterval(laserInterval)
         cells[starshipLaserIndex].classList.remove('starshipLaser')
+      } else if (scoreDisplay === 28000) {
+        handleEndGameWin()
       }
-  }, 200)
+  }, 150)
   }
 
-  // document.addEventListener('keyup', handleStarshipLaser)
+// document.addEventListener('keyup', handleStarshipLaser)
 
 
 
 //* Borgs Laser *//
 
-//? all borgs have the ability to shoot
-//? borgs can only shoot when the cell in front of them doesn't contain a borg
-//? the shooting is randomised and it happens in every 1 second
+// borgsLaserShootAudio()
 
-// function addBorgsLaser() {
-//   cells[borgsLaserIndex].classList.add('borgLaser')
-// }
-
-// function removeBorgsLaser() {
-//   cells[borgsLaserIndex].classList.remove('borgLaser')
-// }
-
-// let isBorgFree = false
-
-// function handleBorgAvailability(indexToCheck) {
-//   if (!cells[indexToCheck + width].classList.contains('borgs')) {
-//     console.log('borg is free', indexToCheck, indexToCheck)
-//     isBorgFree = true
-//   } else {
-    
-//     isBorgFree = false
-//   }
-// }
-
-// function handleBorgsLaser() {
-  
-  // let currentIndexToCheck = borgs[Math.floor(Math.random() * borgs.length)].index
-
-// }
-
-
-// function handleBorgLaser() {
-
-//   let borgIndex.isAlive = false
-
-//   const currentIndexToCheck = borgs[Math.floor(Math.random() * borgs.length)].index
-//   const borgToShoot = borgs.find(borg => {
-//     return borg.index === currentIndexToCheck
-//   })
-//   let borgLaserIndex = borgToShoot.index + width
-
-//   const borgLaserInterval = window.setInterval(() => {
-//     cells[borgLaserIndex].classList.remove('borgLaser')
-//     borgLaserIndex += width
-//     cells[borgLaserIndex].classList.add('borgLaser')
-
-//   if (cells[borgLaserIndex].classList.contains('starShip')) {
-//     cells[borgLaserIndex].classList.remove('starShip')
-//       clearInterval(borgLaserInterval)
-//       // const borgIndex = borgs.find(borg => {
-//       //   return borg.index === starshipLaserIndex
-//       // })
-//       // borgIndex.isAlive = false
-//       cells[borgLaserIndex].classList.remove('borgs')
-//       updateScore()
-//       } else if (borgLaserIndex > 131) {
-//         clearInterval(borgLaserInterval)
-//         cells[borgLaserIndex].classList.remove('borgLaser')
-//       }
-//   }, 800)
-//   }
-
-
-// window.setInterval(handleBorgsLaser, 3000)
-
-// handleBorgAvailability(currentIndexToCheck) 
-
-  // while(!isBorgFree) {
-  //   console.log('not free')
-  //   currentIndexToCheck = borgs[Math.floor(Math.random() * borgs.length)].index
-  //   handleBorgAvailability(currentIndexToCheck)
-  // }
-
-  // if (isBorgFree) {
-  //   console.log('free', currentIndexToCheck)
-  //     const borgShootInterval = window.setInterval(() => {
-  //     cells[borgsLaserIndex].classList.remove('borgLaser')
-  //     borgsLaserIndex += width
-  //     cells[borgsLaserIndex].classList.add('borgLaser')
-  //     if (cells[borgsLaserIndex].classList.contains('starshipLaser')) {
-  //     cells[borgsLaserIndex].classList.remove('starshipLaser')
-  //     clearInterval(borgShootInterval)
-  //     }
-  //   }, 2000)
-  //   }
-
-
-
+function borgsLaserShoot() {
+    const borgsLaserId = setInterval(() => {
+    let borgsLaserIndex = borgs[Math.floor(Math.random() * borgs.length)].index
+    const borgLaserInterval = window.setInterval(() => {
+      cells[borgsLaserIndex].classList.remove('borgsLaser')
+      borgsLaserIndex += width
+      cells[borgsLaserIndex].classList.add('borgsLaser')
+      if (cells[borgsLaserIndex].classList.contains('starship')) {
+        console.log('hit')
+      starshipLoseLife()
+      clearInterval(borgLaserInterval)
+      clearInterval(borgsLaserId)
+      cells[borgsLaserIndex].classList.remove('borgsLaser')
+      // cells[starshipExplosion].classList.add('starshipExplosion')
+      // } else if (cells[borgsLaserIndex].classList.contains('borgsLaser', 'starshipLaser')){
+      //   clearInterval(borgLaserInterval)
+      //   cells[borgsLaserIndex].classList.remove('borgsLaser')
+      //   cells[starShipIndex].classList.remove('starshipLaser')
+      } else if (borgsLaserIndex > 131) {
+        clearInterval(borgLaserInterval)
+        cells[borgsLaserIndex].classList.remove('borgsLaser')
+        console.log('bottom border')
+      }
+    }, 500)
+  }, 2000)
+}
+// document.addEventListener('click', borgsLaserShoot)
 
 //* Borg Explosion *//
 
@@ -338,41 +284,40 @@ function handleStarshipLaser() {
 //   cells[borgsLaserIndex].classList.remove('borgExplosion')
 // }
 
+// let borgExplosion = cells[borgs.index].classList.add('borgsExplosion')
+// const starshipExplosion = document.querySelector('.starshipExplosion')
 
-// const rightBorder = borgs[borgs.length - 1].index % width === width - 1
-// cells[borg.index].classList.add('borgs')
+//* Player Lose Life *//
+let lives = 3
+const starshipLives = document.querySelector('#livesId')
 
-
-
-// const laserAudioBorg = document.createElement('audioBorg')
-// laserAudioBorg.src = './/development/projects/project-1/assets'
-// laserAudioBorg.play()
-// laserAudioBorg.pause()
-
-
-
+function starshipLoseLife() {
+  lives = lives - 1
+  if (lives === 0) {
+    starshipLives.textContent = lives
+    handleEndGameWin()
+  } else {
+    starshipLives.textContent = lives
+  }
+}
 
 //* Game Ends *//
 
-// function borgsWin() {
+// const starshipWinsMessage = document.querySelector('.game-ends-starship-wins')
+// const borgsWinMessage = document.querySelector.length('.game-ends-borgs-win')
 
-//   if (cells[borg.index].classList.contains('borgs' || 'starShipIndex')) {
-//   document.querySelector('.game-ends-borgs-win').innerHTML = 'You will be assimilated'
-//   }
-// }
-// borgsWin()
-
-
-// function starshipWins() {
-//   if (cells[borg.index].classList.contains('starshipIndex')) {
-//   document.querySelector('.game-ends').innerHTML = 'You have defeated the Borg. Take us out of orbit' 
-//   }
-// }
-// starshipWins()
+function handleEndGameWin() {
+  grid.textContent = 'You\'ve done it! Long Live The Federation'
+}
+  // cells[starShipIndex].classList.remove('starship')
+  // cells[borgs.index].classList.remove('borgs')
+  // if (lives > 0) {
+  //   starshipWinsMessage.innerHTML = 'Long Live The Federation'
+  // } else {
+  //   borgsWinMessage.innerHTML = 'You have been assimilated.'
+  // }
 
 
-// function endGame() {
-//   clearInterval(timer)
-//   removePikachu(pikaPosition)
-//   alert(score)
-// }
+function handleEndGameLose() {
+grid.textContent = 'You have been assimilated. Resistance is futile!'
+}
