@@ -11,36 +11,37 @@
 <body>
 
 <audio src="" id='handleGameStartAudio'></audio>
-<!-- <audio src="" id='handleGameDurationAudio'></audio> -->
 <audio src="" id='handleStarshipLaserAudio'></audio>
 <audio src="" id='borgsLaserShootAudio'></audio>
 <audio src="" id='starshipGetsHitAudio'></audio>
 <audio src="" id='starshipWinsAudio'></audio>
 <audio src="" id='borgsWinAudio'></audio>
 
-
-<div class="headOne">
+<div class="header">
   <h1>Federation vs Borg</h1>
+  <h2>Space Invaders</h2>
 </div>
 
-<div class="how-to">
-  <h2>How to Play?</h2>
-  <p class="instructionsOne">Press the Start button to move the Borg.</p>
-  <p class="instructionsTwo">Click on "X" key to shoot.</p>
-  <p class="instructionsThree">Use your < and > arrow keys to move the starship.</p>
-</div>
 
-<div class="start-and-score">
-  <button class="start">Start</button>
-  <div class="text"></div>
-  <p>Your Score <span id="scoreId">0</span></p>
-  <p>Lives Left <span id="livesId">3</span></p>
-</div>
-</div>
+<div class="play-body-wrapper">
+  <div class="text-wrapper">
+    <div class="column-how-to">
+      <h3>How to Play?</h3>
+      <p class="instructionsOne">Press the Start button to move the Borg.</p>
+      <p class="instructionsTwo">Use your < and > arrow keys to move the starship.</p>
+      <p class="instructionsThree">Click on "X" key to shoot.</p>
+    </div>
 
-<div class="grid-wrapper">
-  <div class="grid"></div>
+    <div class="column-start-score">
+      <button class="start">Start</button>
+      <p>Your Score <span id="scoreId">0</span></p>
+      <p>Lives Left <span id="livesId">3</span></p>
+    </div>
+  </div>
+  <div class="column-grid-wrapper">
+    <div class="grid"></div>
+    <div class="borgsLaser-hits"></div>
+  </div>
 </div>
-
 </body>
 </html>

@@ -1,75 +1,94 @@
 /* HTML Elements */
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('')
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  display: inline-flex;
+  display:flex;
+  flex-direction: column;
   align-items: center;
   background-image: url(https://i.imgur.com/diMdwX2.png);
   background-size: cover;
-  height: 100vh;
-  margin: 0;
+  margin: 80px 20px 80px 20px;
+  height: auto;
 }
 
-.headOne {
-  margin: 0 40px 0 90px;
-  width: 200px;
+.header {
+  text-align: center;
+  margin: 40px;
 }
 
 h1 {
-  font-size: 20px;
+  font-size: 35px;
   font-family: 'Press Start 2P';
   color: lightgreen;
   letter-spacing: 5px;
-}
-
-.how-to{
-  flex-grow: 1;
-  height: 250px;
-  width: 200px;
-  margin: 100px 20px 0 40px;
-  justify-content: center;
-  align-content: center;
-  text-align: left;
+  text-transform: uppercase;
 }
 
 h2 {
-  font-size: 15px;
+  font-size: 30px;
+  font-family: 'Press Start 2P';
+  color: lightgreen;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.play-body-wrapper {
+  height: 600px;
+  width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.text-wrapper {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.column-how-to{
+  flex: 20%;
+  height: 250px;
+  width: 180px;
+  justify-content: center;
+  align-content: center;
+  text-align: left;
+  margin: 0 0 0 0;
+}  
+
+h3 {
+  font-size: 17px;
   font-family: 'Press Start 2P';
   color: lightgreen;
 }
 
 .instructionsOne {
   font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica;
   color: lightgreen;
-  margin: 20px 20px 10px 0px;
 }
 
 .instructionsTwo {
   font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica;
   color: lightgreen;
-  margin: 20px 20px 10px 0px;
 }
 
 .instructionsThree {
   font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica;
   color: lightgreen;
-  margin: 20px 20px 10px 0px;
 }
 
-.start-and-score {
-  margin: 550px 0 0 0;
-  justify-content: center;
-  align-content: center;
-  margin: 30px 60px 0 20px;
-  width: 200px;
+.column-start-score {
+  flex: 20%;
   justify-content: center;
   align-content: center;
   text-align: left;
@@ -88,7 +107,7 @@ h2 {
   font-size: 12px; 
   font-family: 'Press Start 2P';
   transition-duration: 0.4s; 
-  margin: 0 10px 30px 0;
+  margin: 0 0 20px 0;
 }
 
 .start:active{
@@ -111,24 +130,23 @@ p {
   font-size: 15px;
   font-family: 'Press Start 2P';
   color: lightgreen;
-  margin: 50px 0 0 0;
 }
 
 #livesId {
   font-size: 15px;
-  padding: 40px 0 0 0;
   font-family: 'Press Start 2P';
   color: lightgreen;
   }
 
   /* Grid Elements */
 
-.grid-wrapper {
+.column-grid-wrapper {
+  flex: 60%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: -150px 0 0 0;
   color: lightgreen;
   font-size: 45px;
   transition-duration: 0.5s;
@@ -179,3 +197,11 @@ p {
   background-image: url(https://i.imgur.com/KD0jCHh.png);
   background-size: contain;
 }
+
+/* .borgsLaser-hits::before {
+content: '';
+height: 30px;
+width: 30px;
+background-image: url(https://i.imgur.com/KD0jCHh.png);
+background-size: contain;
+} */

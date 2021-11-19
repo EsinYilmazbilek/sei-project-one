@@ -1,14 +1,17 @@
 /* eslint-disable indent */
 
-//* Grids *//
+//* Grid Variables *//
 
 const grid = document.querySelector('.grid')
 const cells = []
 const width = 12
 const gridCellCount =  width * width
 
+//* Starship Variables *//
 
-//* Borg *//
+let starShipIndex = 120
+
+//* Borg Variables *//
 
 let borgs = [
   { index: 13, isAlive: true },
@@ -41,12 +44,7 @@ let borgs = [
   { index: 55, isAlive: true } 
 ]
 
-//* Starship *//
-
-let starShipIndex = 120
-
-
-//* Grid *//
+//* Building the Grid *//
 
 function createGrid() {
   for (let i = 0; i < gridCellCount; i++) {
@@ -58,7 +56,11 @@ function createGrid() {
 }
 createGrid()
 
-//* Borgs *//
+//* Building the Starship *//
+
+cells[starShipIndex].classList.add('starship')
+
+//* Building the Borgs *//
 
 function createBorg(){
   borgs.forEach((borg) => {
@@ -67,21 +69,11 @@ function createBorg(){
 }
 createBorg()
 
-//* Starship *//
-
-cells[starShipIndex].classList.add('starship')
-
-//* Starship Explosion *//
-
-// const starshipExplosion = document.querySelector('starshipExplosion')
-// cells[starshipExplosion].classList.add('starshipExplosion')
-
-//* Audios *//
+//* Audio Files and Functions*//
 
 const audioPlayGameStart = document.querySelector('#handleGameStartAudio')
-// const audioPlayGameDuration = document.querySelector('#handleGameDurationAudio')
 const audioStarshipLaser = document.querySelector('#handleStarshipLaserAudio')
-// const audioPlayBorgShoot = document.querySelector('#borgsLaserShootAudio')
+const audioPlayBorgShoot = document.querySelector('#borgsLaserShootAudio')
 const audioStarshipGetsHit = document.querySelector('#starshipGetsHitAudio')
 const audioStarshipWins = document.querySelector('#starshipWinsAudio')
 const audioBorgsWin = document.querySelector('#borgsWinAudio')
@@ -91,20 +83,15 @@ function handleGameStartAudio() {
   audioPlayGameStart.play()
 }
 
-// function handleGameDurationAudio() {
-//   audioPlayGameDuration.src = './assets/507770__bloodpixelhero__your-last-game.wav'
-//   audioPlayGameDuration.play()
-// }
-
 function handleStarshipLaserAudio() {
   audioStarshipLaser.src = './assets/505235__daleonfire__laser2.wav'
   audioStarshipLaser.play()
 }
 
-// function borgsLaserShootAudio() {
-//   audioPlayBorgShoot.src = './assets/415991__matrixxx__retro-drop-01.wav'
-//   audioPlayBorgShoot.play()
-// }
+function borgsLaserShootAudio() {
+  audioPlayBorgShoot.src = './assets/415991__matrixxx__retro-drop-01.wav'
+  audioPlayBorgShoot.play()
+}
 
 function starshipGetsHitAudio() {
   audioStarshipGetsHit.src = './assets/404754__owlstorm__retro-video-game-sfx-explode.wav'
@@ -112,7 +99,7 @@ function starshipGetsHitAudio() {
 }
 
 function starshipWinsAudio() {
-  audioStarshipWins.src = './assets/495005__evretro__win-video-game-sound.wav'
+  audioStarshipWins.src = './assets/Live Long and Prosper.mp3'
   audioStarshipWins.play()
 }
 
@@ -121,10 +108,7 @@ function borgsWinAudio() {
   audioBorgsWin.play()
 }
 
-
-
 //* Moving the Borg - they start upon clicking the start button *//
-
 
 const startButton = document.querySelector('.start')
 
@@ -146,8 +130,7 @@ let direction = 1
 
 function handleGameStart() {
   handleGameStartAudio()
-  // handleGameDurationAudio()
-  // handleControlKeys()
+  document.addEventListener('keyup', handleControlKeys)
 
   setTimeout(borgsLaserShoot, 1000)
     const borgsMoving = window.setInterval(() => {   
@@ -185,7 +168,7 @@ function handleGameStart() {
       })
     }
     addBorg()
-  }, 860)
+  }, 360)
 
 }
 startButton.addEventListener('click', handleGameStart)
@@ -226,8 +209,6 @@ function handleControlKeys(e) {
   }
   addStarship()
 }
-
-document.addEventListener('keyup', handleControlKeys)
 
 
 //* Scoreboard Update *//
@@ -272,12 +253,9 @@ function handleStarshipLaser() {
 
 
 //* Borgs Laser *//
-// let borgsLaserIndex = borgs[Math.floor(Math.random() * borgs.length)].index
-// const borgsLaserIndex = cells[borgsLaserIndex].classList.add('borgsLaser')
-// borgsLaserShootAudio()
-
 
 function borgsLaserShoot() {
+  borgsLaserShootAudio()
     const borgsLaserId = setInterval(() => {
     let borgsLaserIndex = borgs[Math.floor(Math.random() * borgs.length)].index
     const borgLaserInterval = window.setInterval(() => {
@@ -287,19 +265,10 @@ function borgsLaserShoot() {
       if (cells[borgsLaserIndex].classList.contains('starship')) {
         console.log('hit')
       starshipGetsHitAudio()
-      
-      // try to add the starship explosion
-      // const starshipExplosion = document.querySelector('starshipExplosion')
-      // const starshipExplosionInterval = window.setInterval(() => {
-      //   if (starShipIndex === borgsLaserIndex) {
-      //     cells[starShipIndex].classList.remove('starship')
-      //     cells[starshipExplosion].classList.add('starshipExplosion')
-      //     cells[starshipExplosion].classList.remove('starshipExplosion')
-      //     cells[starShipIndex].classList.add('starship')
-      //     clearInterval(starshipExplosionInterval)
-      //   }
-      // }, 900)
-
+      cells[borgsLaserIndex].classList.add('starshipExplosion')
+      setTimeout(() => {
+        cells[borgsLaserIndex].classList.remove('starshipExplosion')
+      }, 1000)
       starshipLoseLife()
       clearInterval(borgLaserInterval)
       clearInterval(borgsLaserId)
@@ -309,8 +278,8 @@ function borgsLaserShoot() {
         cells[borgsLaserIndex].classList.remove('borgsLaser')
         console.log('bottom border')
       }
-    }, 500)
-  }, 1500)
+    }, 400)
+  }, 1000)
 }
 // document.addEventListener('click', borgsLaserShoot)
 
@@ -325,15 +294,14 @@ function borgsLaserShoot() {
 // }
 
 // let borgExplosion = cells[borgs.index].classList.add('borgsExplosion')
-// const starshipExplosion = document.querySelector('.starshipExplosion')
 
 
 //* Starship Explode *//
 // const starshipExplosion = document.querySelector('starshipExplosion')
 
 // function starshipExplode() {
-//   if (starShipIndex === borgsLaserIndex) {
 //     window.setInterval(() => {
+//       if (cells[starShipIndex].classList.contains)
 //       cells[starShipIndex].classList.remove('starship')
 //       cells[starshipExplosion].classList.add('starshipExplosion')
 //       setTimeout(starshipExplode, 200)
@@ -343,6 +311,10 @@ function borgsLaserShoot() {
 //     }, 200)
 //   }
 // }
+
+// setTimeout(() => {
+//   location.reload()
+//   }, 3000)
 
 
 //* Player Lose Life *//
@@ -361,23 +333,24 @@ function starshipLoseLife() {
 
 //* Game Ends *//
 
-// const starshipWinsMessage = document.querySelector('.game-ends-starship-wins')
-// const borgsWinMessage = document.querySelector.length('.game-ends-borgs-win')
-
 function handleEndGameWin() {
   starshipWinsAudio()
-  grid.textContent = 'Long Live The Federation'
+  grid.textContent = 'Live Long And Prosper'
+  resetGame()
 }
-  // cells[starShipIndex].classList.remove('starship')
-  // cells[borgs.index].classList.remove('borgs')
-  // if (lives > 0) {
-  //   starshipWinsMessage.innerHTML = 'Long Live The Federation'
-  // } else {
-  //   borgsWinMessage.innerHTML = 'You have been assimilated.'
-  // }
-
 
 function handleEndGameLose() {
 borgsWinAudio()
-grid.textContent = 'You will be assimilated. Resistance is futile!'
+grid.textContent = 'You will be assimilated'
+grid.style.fontFamily = 'monospace'
+resetGame()
+}
+
+//* Reset *//
+
+
+function resetGame() {
+  setTimeout(() => {
+  location.reload()
+  }, 3000)
 }
