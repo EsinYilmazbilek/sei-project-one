@@ -168,7 +168,7 @@ function handleBorgMove() {
       })
     }
     addBorg()
-  }, 360)
+  }, 860)
 
 }
 startButton.addEventListener('click', handleBorgMove)
