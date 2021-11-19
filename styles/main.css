@@ -1,11 +1,12 @@
+/* HTML Elements */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  /* display: grid; */
-  /* grid-auto-flow: column;
-  grid-auto-columns: 1fr; */
   display: inline-flex;
   align-items: center;
   background-image: url(https://i.imgur.com/diMdwX2.png);
@@ -14,28 +15,113 @@ body {
   margin: 0;
 }
 
-/* .columnOne {
-  width: 15%;
+.headOne {
+  margin: 0 40px 0 90px;
+  width: 200px;
 }
-
-.columnTwo {
-  width: 80%;
-}
-
-.columnThree {
-  width: 5%;
-} */
 
 h1 {
-  font-size: 30px;
+  font-size: 20px;
+  font-family: 'Press Start 2P';
   color: lightgreen;
+  letter-spacing: 5px;
+}
+
+.how-to{
+  flex-grow: 1;
+  height: 250px;
+  width: 200px;
+  margin: 100px 20px 0 40px;
+  justify-content: center;
+  align-content: center;
+  text-align: left;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 15px;
+  font-family: 'Press Start 2P';
   color: lightgreen;
-  padding: 0 0 0 50px;
 }
+
+.instructionsOne {
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightgreen;
+  margin: 20px 20px 10px 0px;
+}
+
+.instructionsTwo {
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightgreen;
+  margin: 20px 20px 10px 0px;
+}
+
+.instructionsThree {
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightgreen;
+  margin: 20px 20px 10px 0px;
+}
+
+.start-and-score {
+  margin: 550px 0 0 0;
+  justify-content: center;
+  align-content: center;
+  margin: 30px 60px 0 20px;
+  width: 200px;
+  justify-content: center;
+  align-content: center;
+  text-align: left;
+}
+
+.start {
+  color: lightgreen;
+  background-color: black;
+  font-weight: bold;
+  border: 5px solid darkgreen;
+  box-shadow: 0px 0px 12px aqua;
+  border-radius: 5px;
+  padding: 15px;      
+  text-align: center;      
+  display: inline-block;      
+  font-size: 12px; 
+  font-family: 'Press Start 2P';
+  transition-duration: 0.4s; 
+  margin: 0 10px 30px 0;
+}
+
+.start:active{
+  box-shadow: inset 0 0.6em 3em -0.6em rgba(165, 165, 165, 0.7);
+}
+
+.start:hover { 
+background-color: aqua;
+font-size: 13px;
+transition-duration: 0.3s;
+}
+
+p {
+  font-size: 15px;
+  font-family: 'Press Start 2P';
+  color: lightgreen;
+}
+
+#scoreId {
+  font-size: 15px;
+  font-family: 'Press Start 2P';
+  color: lightgreen;
+  margin: 50px 0 0 0;
+}
+
+#livesId {
+  font-size: 15px;
+  padding: 40px 0 0 0;
+  font-family: 'Press Start 2P';
+  color: lightgreen;
+  }
+
+  /* Grid Elements */
 
 .grid-wrapper {
   height: 100vh;
@@ -43,13 +129,17 @@ h2 {
   justify-content: center;
   align-items: center;
   margin: 0;
-  color: green;
-  font-size: 15px;
+  color: lightgreen;
+  font-size: 45px;
+  transition-duration: 0.5s;
+  text-align: center;
 }
 
 .grid {
+  -webkit-box-shadow:0px 0px 32px 6px rgba(45,255,196,0.87);
+  -moz-box-shadow: 0px 0px 32px 6px rgba(45,255,196,0.87);
+  box-shadow: 0px 0px 32px 6px rgba(45,255,196,0.87);
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -60,19 +150,23 @@ h2 {
 }
 
 .grid div {
-  border: 1px solid lightgreen;
   flex-grow: 1;
   height: 30px;
   width: 30px;
 }
 
 .borgs {
-  background-image: url(https://i.imgur.com/DcurtRSm.gif);
+  background-image: url(https://i.imgur.com/5reGAae.png);
   background-size: 100%;
 }
 
+.borgsLaser {
+  background-image: url(https://i.imgur.com/DT2IiNG.png);
+  background-size: contain;
+}
+
 .starship {
-  background-image: url(https://i.imgur.com/9QFq3pwm.jpg);
+  background-image: url(https://i.imgur.com/EeCF1PQ.png);
   background-size: contain;
 }
 
@@ -81,32 +175,7 @@ h2 {
   background-size: contain;
 }
 
-/* .starshipExplosion {
-  background-color: red;
-} */
-
-.borgsLaser {
-  background-image: url(https://i.imgur.com/DT2IiNG.png);
+.starshipExplosion {
+  background-image: url(https://i.imgur.com/KD0jCHh.png);
   background-size: contain;
 }
-
-p, #scoreId {
-font-size: 20px;
-color: yellow;
-}
-
-#livesId {
-  font-size: 20px;
-  color: yellow;
-  }
-
-/* .game-ends-borgs-win {
-font-size: 30px;
-color: green;
-
-}
-
-.game-ends-starship-wins {
-font-size: 30px;
-color: blue;
-} */
