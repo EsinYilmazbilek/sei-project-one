@@ -148,7 +148,8 @@ p {
   align-items: center;
   margin: -150px 0 0 0;
   color: lightgreen;
-  font-size: 45px;
+  font-size: 25px;
+  font-family: 'Press Start 2P';
   transition-duration: 0.5s;
   text-align: center;
 }
@@ -198,10 +199,10 @@ p {
   background-size: contain;
 }
 
-/* .borgsLaser-hits::before {
+.borgsLaser-shoots::before {
 content: '';
 height: 30px;
 width: 30px;
-background-image: url(https://i.imgur.com/KD0jCHh.png);
+background-image: url(https://i.imgur.com/DT2IiNG.png);
 background-size: contain;
-} */
+}

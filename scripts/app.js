@@ -73,7 +73,7 @@ createBorg()
 
 const audioPlayGameStart = document.querySelector('#handleGameStartAudio')
 const audioStarshipLaser = document.querySelector('#handleStarshipLaserAudio')
-const audioPlayBorgShoot = document.querySelector('#borgsLaserShootAudio')
+// const audioPlayBorgShoot = document.querySelector('#handleBorgsLaserAudio')  // leaving this one out for now
 const audioStarshipGetsHit = document.querySelector('#starshipGetsHitAudio')
 const audioStarshipWins = document.querySelector('#starshipWinsAudio')
 const audioBorgsWin = document.querySelector('#borgsWinAudio')
@@ -88,10 +88,10 @@ function handleStarshipLaserAudio() {
   audioStarshipLaser.play()
 }
 
-function borgsLaserShootAudio() {
-  audioPlayBorgShoot.src = './assets/415991__matrixxx__retro-drop-01.wav'
-  audioPlayBorgShoot.play()
-}
+// function handleBorgsLaserAudio() {
+//   audioPlayBorgShoot.src = './assets/415991__matrixxx__retro-drop-01.wav'
+//   audioPlayBorgShoot.play()
+// }
 
 function starshipGetsHitAudio() {
   audioStarshipGetsHit.src = './assets/404754__owlstorm__retro-video-game-sfx-explode.wav'
@@ -128,11 +128,11 @@ function addBorg(){
 
 let direction = 1
 
-function handleGameStart() {
+function handleBorgMove() {
   handleGameStartAudio()
   document.addEventListener('keyup', handleControlKeys)
 
-  setTimeout(borgsLaserShoot, 1000)
+  setTimeout(handleBorgsLaser, 1000)
     const borgsMoving = window.setInterval(() => {   
       const aliveBorgs = borgs.filter(borg => {
         return borg.isAlive === true
@@ -171,7 +171,7 @@ function handleGameStart() {
   }, 360)
 
 }
-startButton.addEventListener('click', handleGameStart)
+startButton.addEventListener('click', handleBorgMove)
 
 
 //* Moving the StarShip *//
@@ -184,7 +184,7 @@ function addStarship(){
     cells[starShipIndex].classList.add('starship')
 }
 
-//* Handle Control Keys *//
+//* Handle Control Keys for Starship*//
 
 function handleControlKeys(e) {
   const x = starShipIndex % width
@@ -209,7 +209,6 @@ function handleControlKeys(e) {
   }
   addStarship()
 }
-
 
 //* Scoreboard Update *//
 
@@ -242,7 +241,7 @@ function handleStarshipLaser() {
     } else if (starshipLaserIndex < width) {
         clearInterval(laserInterval)
         cells[starshipLaserIndex].classList.remove('starshipLaser')
-      } else if (scoreDisplay === 28000) {
+      } else if (scoreDisplay === 28000 || borgs.index === 0) {
         handleEndGameWin()
       }
   }, 150)
@@ -250,12 +249,9 @@ function handleStarshipLaser() {
 
 // document.addEventListener('keydown', handleStarshipLaser)
 
-
-
 //* Borgs Laser *//
 
-function borgsLaserShoot() {
-  borgsLaserShootAudio()
+function handleBorgsLaser() {
     const borgsLaserId = setInterval(() => {
     let borgsLaserIndex = borgs[Math.floor(Math.random() * borgs.length)].index
     const borgLaserInterval = window.setInterval(() => {
@@ -281,41 +277,7 @@ function borgsLaserShoot() {
     }, 400)
   }, 1000)
 }
-// document.addEventListener('click', borgsLaserShoot)
-
-//* Borg Explosion *//
-
-// function addBorgsExplosion() {
-//   cells[borgsLaserIndex].classList.add('borgExplosion')
-// }
-
-// function removeBorgsExplosion() {
-//   cells[borgsLaserIndex].classList.remove('borgExplosion')
-// }
-
-// let borgExplosion = cells[borgs.index].classList.add('borgsExplosion')
-
-
-//* Starship Explode *//
-// const starshipExplosion = document.querySelector('starshipExplosion')
-
-// function starshipExplode() {
-//     window.setInterval(() => {
-//       if (cells[starShipIndex].classList.contains)
-//       cells[starShipIndex].classList.remove('starship')
-//       cells[starshipExplosion].classList.add('starshipExplosion')
-//       setTimeout(starshipExplode, 200)
-//       cells[starshipExplosion].classList.remove('starshipExplosion')
-//       cells[starShipIndex].classList.add('starship')
-//       clearInterval()
-//     }, 200)
-//   }
-// }
-
-// setTimeout(() => {
-//   location.reload()
-//   }, 3000)
-
+// document.addEventListener('click', handleBorgsLaser)
 
 //* Player Lose Life *//
 let lives = 3
@@ -335,22 +297,22 @@ function starshipLoseLife() {
 
 function handleEndGameWin() {
   starshipWinsAudio()
-  grid.textContent = 'Live Long And Prosper'
+  grid.textContent = 'LIVE LONG AND PROSPER'
+  grid.style.fontFamily = 'Press Start 2P'
   resetGame()
 }
 
 function handleEndGameLose() {
 borgsWinAudio()
-grid.textContent = 'You will be assimilated'
-grid.style.fontFamily = 'monospace'
+grid.textContent = 'YOU WILL BE ASSIMILATED'
+grid.style.fontFamily = 'Press Start 2P'
 resetGame()
 }
 
 //* Reset *//
 
-
 function resetGame() {
   setTimeout(() => {
   location.reload()
-  }, 3000)
+  }, 4000)
 }
