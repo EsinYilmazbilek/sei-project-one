@@ -1,0 +1,28 @@
+/* General Grid Cell style */
+.grid-item {
+  height: 200px;
+  width: 200px;
+}
+
+
+/* Appends a Pikachu background image  */
+.grid-item.pika {
+  background-image: url(../assets/pika-sprite.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
+
+/* Appends a second background image over the Pikachu, when the classes of "pika" and "pika-hit" are both present on the div. Try playing with the classes directly in the HTML and see what happens */
+
+.grid-item.pika.pika-hit::before {
+  content: '';
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  background-image: url(../assets/explosion.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
