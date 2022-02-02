@@ -18,7 +18,7 @@ My version is a take on the classic Space Invaders arcade game with Borg theme. 
 * Click on X on your keyboard to shoot the Borg.
 
 # Deployment
-The game has been deployed with GitHub Pages and is available here.
+The game has been deployed with GitHub Pages and is available [here](https://esinyilmazbilek.github.io/sei-project-one/).
 
 # Timeframe
 7 days
