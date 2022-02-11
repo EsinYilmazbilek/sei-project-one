@@ -131,7 +131,6 @@ let direction = 1
 function handleBorgMove() {
   handleGameStartAudio()
   document.addEventListener('keyup', handleControlKeys)
-
   setTimeout(handleBorgsLaser, 1000)
     const borgsMoving = window.setInterval(() => {   
       const aliveBorgs = borgs.filter(borg => {
@@ -146,9 +145,7 @@ function handleBorgMove() {
     }) 
     const rightBorder = borgs[borgs.length - 1].index % width === width - 1
     const leftBorder = borgs[0].index % width === 0
-
     removeBorg() 
-
     if (rightBorder && direction === 1) {
       borgs = borgs.map(borg => {
         borg.index += width 
@@ -169,7 +166,6 @@ function handleBorgMove() {
     }
     addBorg()
   }, 860)
-
 }
 startButton.addEventListener('click', handleBorgMove)
 
