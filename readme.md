@@ -4,7 +4,7 @@
 Space Invaders is a classic 80s Taito arcade game. The player, moving left or right, aims to shoot an invading alien armada and achieve the highest score possible before either being eradicated by lasers that the aliens shoot periodically, or allowing the armada to reach Planet Earth's surface.
 My version is a take on the classic Space Invaders arcade game with Borg theme. This grid base single player game is my first dev project built with HTML, CSS, Vanilla JavaScript and GitHub.
 
-![](src/assets/screenshots/game_played.png)
+![](assets/screenshots/game_played.png)
 
 # Brief:
 1. Render a grid based game in the browser
@@ -38,51 +38,51 @@ The game has been deployed with GitHub Pages and is available [here](https://esi
 ### Planning:
 I started developing the game by planning all the functionalities the game should have, and put them into two lists, one for MVP and others for Stretch Goals. I then started breaking down the steps to reach my MVP to give myself enough time and make sure I can deliver the final project by the deadline.
 
-![](src/assets/screenshots/planning.png)
-![](src/assets/screenshots/planning_days.png)
+![](assets/screenshots/planning.png)
+![](assets/screenshots/planning_days.png)
 
 For reference: Even though the plural of Borg is still Borg, you will see that I used the word Borgs to reference the whole armada for the naming conventions in my code.
 
 ### Build:
 
-![](src/assets/screenshots/planning_notes.png)
+![](assets/screenshots/planning_notes.png)
 
 1. As I was building the game on a single JS file, I made titled sections on the page to help myself navigate.
 
 2. I created the game grid by setting a value for width and used a for-loop to create a div element while the index value was less than width times width. The divs were pushed to an empty array and appended to the grid div in my HTML.
 
-![](src/assets/screenshots/grid.png)
-![](src/assets/screenshots/create_grid.png)
+![](assets/screenshots/grid.png)
+![](assets/screenshots/create_grid.png)
 
 3. I created and placed the Borg ships on the grid by creating an array which included the index values of the squares on the grid. I then wrote the function to have them move from left to right until they reach the right border, move one row down and change direction to the opposite way until they reach the row on the grid where the player is located. I created a timer for the Borg ship movement that reflects the human heart beat. 
 
-![](src/assets/screenshots/aliens.png)
-![](src/assets/screenshots/borg_move.png)
+![](assets/screenshots/aliens.png)
+![](assets/screenshots/borg_move.png)
 
 4. I worked on creating the player ship and have it move on the y axis via the arrow keys on the keyboard. 
 
-![](src/assets/screenshots/control_keys.png)
+![](assets/screenshots/control_keys.png)
 
 5. Once the Borg and player ships were moving correctly within the grid, I added the shooting functionality. For the Borg ship, the beams are generated randomly from all the ships in the armada. If any of these beams hit the player ship the player ship gets removed and loses a life.
 
-![](src/assets/screenshots/borg_laser.png)
+![](assets/screenshots/borg_laser.png)
 
 6. After building the code for the Borg laser, I followed a similar path for the starship laser function.
 
-![](src/assets/screenshots/starship_laser.png)
+![](assets/screenshots/starship_laser.png)
 
 7. On every instance the player lasers hit the Borg armada, the hit Borg ship is removed from the array and the scoreboard is updated with 1000 points. If all Borg ships are shot before they can reach the player row, handleEndGameWin() function is called. If the player ship is hit 3 times during the attack, the handleEndGameLose() function is called.
 
-![](src/assets/screenshots/gamewin_gamelose.png)
+![](assets/screenshots/gamewin_gamelose.png)
 
 8. In both cases the grid is cleared, and the player can reset the game and start again.
 
-![](src/assets/screenshots/game_reset.png)
+![](assets/screenshots/game_reset.png)
 
 9. Once the game was functioning how I planned, I added sound files to give it a vintage feeling. Sound files play upon starting the game, when the Borg and the player shoot lasers.
 
-![](src/assets/screenshots/audio_js.png)
-![](src/assets/screenshots/audio_html.png)
+![](assets/screenshots/audio_js.png)
+![](assets/screenshots/audio_html.png)
 
 # Challenges
 Being my first project on the course, I faced many challenges, of which the biggest were:
